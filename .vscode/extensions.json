@@ -12,5 +12,6 @@
 		"shd101wyy.markdown-preview-enhanced", // .md view
 		"pkief.material-icon-theme", // file icons
 		"christian-kohler.path-intellisense", // Path
+		"eamodio.gitlens", // Git-lens lmao
 	]
 }

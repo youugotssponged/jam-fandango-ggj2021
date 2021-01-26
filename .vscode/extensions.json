@@ -1,0 +1,16 @@
+{
+	// J's big juicy GGJ VScode Workspace Setup extensions for Unity.
+	"recommendations": [
+		"unity.unity-debug", // debugger for unity
+		"tobiah.unity-tools", // unity tooling
+		"kleber-swf.unity-code-snippets", // unity code snippets
+		"yclepticstudios.unity-snippets", // unity code snippets
+		"ms-dotnettools.csharp", // c# language core things from ms
+		"jorgeserrano.vscode-csharp-snippets", // c# snippets
+		"coenraads.bracket-pair-colorizer", // colours brackets
+		"dzhavat.git-cheatsheet", // cheatsheet for git
+		"shd101wyy.markdown-preview-enhanced", // .md view
+		"pkief.material-icon-theme", // file icons
+		"christian-kohler.path-intellisense", // Path
+	]
+}

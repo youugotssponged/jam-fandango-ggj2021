@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Default : MonoBehaviour
 {
-    public Transform
+    public Transform t;
     
     // Start is called before the first frame update
     void Start()

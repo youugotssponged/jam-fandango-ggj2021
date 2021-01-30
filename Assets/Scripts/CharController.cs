@@ -76,8 +76,7 @@ public class CharController : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D other) {
         switch (other.gameObject.name) {
             case "Key":
-                player.KeyState = Player.player_states.hasKey;
-                //change player state to have key
+                player.KeyState = Player.player_states.hasKey; //change player state to have key
                 break;
             case "Door":
                 break;

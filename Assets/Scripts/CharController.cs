@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class CharController : MonoBehaviour
 {
+    private AudioSource audioSource;
+    private AudioSource walkingAudio;
+    public AudioClip[] playerSounds; //0 should be door opening, 1 is health pickup, 2 is hurt noise, 3 is walking, 4 is running
     Player player;
     GameObject touchingDoor;
     private Animator animator;
@@ -18,11 +21,21 @@ public class CharController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioSource[] sources= GetComponents<AudioSource>();
+        audioSource = sources[0];
+        audioSource.volume = 0.65f;
+        audioSource.loop = false;
+        walkingAudio = sources[1];
+        walkingAudio.volume = 0.45f;
+        walkingAudio.loop = true;
+        walkingAudio.clip = playerSounds[3]; //walking
+        walkingAudio.Play();
         touchingDoor = null;
         player = new Player();
         stamina = maxStamina;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player.Health = 10;
     }
 
     // Update is called once per frame
@@ -34,6 +47,10 @@ public class CharController : MonoBehaviour
         bool running = (canRun && isMoving()) ? Input.GetKey("left shift") : false;
         float speed = (running) ? baseSpeed*1.5f : baseSpeed;
         speed = (isMoving()) ? speed : 0;
+        walkingAudio.mute = !isMoving();
+        walkingAudio.clip = (running) ? playerSounds[4] : playerSounds[3];
+        if (!walkingAudio.isPlaying)
+            walkingAudio.Play();
 
         if (running) {
             if (stamina <= 0) {
@@ -66,6 +83,7 @@ public class CharController : MonoBehaviour
         animator.SetFloat("speed", speed);
         animator.SetFloat("running", (running) ? 2 : 1);
         animator.SetBool("right", (horizMove > 0));
+        animator.SetInteger("health", player.Health);
 
         if (player.Health <= 0) {
             player.CurrentState = Player.player_states.died;
@@ -85,6 +103,7 @@ public class CharController : MonoBehaviour
     private void openDoor(GameObject door) {
         Animator anim = door.GetComponentInParent<Animator>();
         anim.SetTrigger("open");
+        playSound("door");
         player.KeyState = Player.player_states.noKey;
     }
 
@@ -101,8 +120,12 @@ public class CharController : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D col) {
         switch (col.gameObject.tag) {
             case "Health":
-                player.Health = player.Health + ((player.Health <= 75) ? 25 : (100 - player.Health)); //adds 25 health to player but doesn't go over 100
-                col.gameObject.SetActive(false); //deactivates the health pickup so that it can't be used more than once
+                if (player.Health < 100) {
+                    Debug.Log(player.Health);
+                    player.Health = player.Health + ((player.Health <= 75) ? 25 : (100 - player.Health)); //adds 25 health to player but doesn't go over 100
+                    col.gameObject.SetActive(false); //deactivates the health pickup so that it can't be used more than once
+                    playSound("health");
+                }
                 break;
             case "Key":
                 player.KeyState = Player.player_states.hasKey; //change player state to have key
@@ -119,6 +142,26 @@ public class CharController : MonoBehaviour
     public void OnTriggerExit2D(Collider2D col) {
         if (col.gameObject.tag == "Door")
             touchingDoor = null;
+    }
+
+    public void takeDamage(int dmg) {
+        player.Health -= dmg;
+        playSound("hurt");
+    }
+
+    private void playSound(string sound) {
+        switch (sound) {
+            case "door":
+                audioSource.clip = playerSounds[0];
+                break;
+            case "health":
+                audioSource.clip = playerSounds[1];
+                break;
+            case "hurt":
+                audioSource.clip = playerSounds[2];
+                break;
+        }
+        audioSource.Play();
     }
 
 }

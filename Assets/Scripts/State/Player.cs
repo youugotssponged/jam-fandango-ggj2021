@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Player
 {
-    private int Health{get; set;}
+    public int Health { get; set; }
     public double time = 0.0;
     public string playerInitials = "AAA";
 

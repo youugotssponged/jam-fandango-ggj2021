@@ -20,6 +20,7 @@ public class CharController : MonoBehaviour
         stamina = maxStamina;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        LeaderboardController lbc = new LeaderboardController();
     }
 
     // Update is called once per frame
@@ -61,6 +62,10 @@ public class CharController : MonoBehaviour
         }
 
         animator.SetFloat("speed", speed);
+
+        if (player.Health <= 0) {
+            player.CurrentState = Player.player_states.died;
+        }
     }
 
     private bool isMoving() {
@@ -74,7 +79,10 @@ public class CharController : MonoBehaviour
     }
     
     public void OnCollisionEnter2D(Collision2D other) {
-        switch (other.gameObject.name) {
+        switch (other.gameObject.tag) {
+            case "Health":
+                player.Health = player.Health + ((player.Health <= 75) ? 25 : (100 - player.Health)); //adds 25 health to player but doesn't go over 100
+                break;
             case "Key":
                 player.KeyState = Player.player_states.hasKey; //change player state to have key
                 break;

@@ -6,9 +6,10 @@ using System.IO;
 public class LeaderboardController
 {
     private string filePath = Application.persistentDataPath + "/leaderboard.json";
-    private List<Entry> entries = new List<Entry>();
+    private List<Entry> entries { get; set; }
 
     public LeaderboardController() {
+        entries = new List<Entry>();
         if (!File.Exists(filePath))
             File.Create(filePath);
         loadEntries();
@@ -56,6 +57,11 @@ public class LeaderboardController
         );
     }
 
+    ///<summary>Returns the list of loaded entries</summary>
+    public Entry[] GetEntries() {
+        return entries.ToArray();
+    }
+
 }
 
 ///<summary>Unity apparently can't serialise a list, but can serialise a class that contains a list, so that's what this is for</summary>
@@ -71,7 +77,7 @@ class EntryList {
 
 ///<summary>Holds the relevant data that is stored in the leaderboard</summary>
 [System.Serializable]
-class Entry
+public class Entry
 {
     public string initials;
     public double time;

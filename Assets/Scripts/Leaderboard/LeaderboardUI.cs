@@ -4,14 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class LeaderboardUI : MonoBehaviour
 {
     public GameObject entryPrefab;
     LeaderboardController lbc;
     Entry[] entries;
+
+    public AudioClip clip;
+    private AudioSource src;
     // Start is called before the first frame update
     void Start()
     {
+        src = GetComponent<AudioSource>();
+        src.clip = clip;
+        src.volume = 0.7f;
+
+
         lbc = new LeaderboardController();
         entries = lbc.GetEntries();
         initEntries();
@@ -21,6 +30,10 @@ public class LeaderboardUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PlayClickSound() {
+        src.PlayOneShot(src.clip);
     }
 
     private void initEntries() {

@@ -4,14 +4,21 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class MainMenuController : MonoBehaviour
 {
-    public AudioClip clip;
+    public AudioClip btnClick;
     public AudioSource src;
 
     // Needs to play theme, and handle button sounds?
 
     private void Start(){
-
+        src = GetComponent<AudioSource>();
+        src.clip = btnClick;
+        src.volume = 0.7f;
     }
+
+    public void PlayClickSoundOnHover(){
+        src.PlayOneShot(src.clip);
+    }
+
     public void LoadInstructions(){
         SceneManager.LoadScene(3);
     }
@@ -24,7 +31,7 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
-    public void QuitToDesktop(){
+    public void QuitToDesktop(){   
         Application.Quit();
     }
 }

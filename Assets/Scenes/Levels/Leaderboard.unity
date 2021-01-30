@@ -123,6 +123,108 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &712783470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 506606772, guid: a707f23fd88257c4c912b78a81b8db7b, type: 3}
+  m_PrefabInstance: {fileID: 8510256342350703736}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d0c9b9b1b27f74fa1a440d183bb398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &818213138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 555040020722607132, guid: a707f23fd88257c4c912b78a81b8db7b, type: 3}
+  m_PrefabInstance: {fileID: 8510256342350703736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &818213140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818213138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 712783470}
+          m_TargetAssemblyTypeName: LeaderboardUI, Assembly-CSharp
+          m_MethodName: PlayClickSound
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!1001 &1132297728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4201375256659373121, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_Name
+      value: MainMenuThemePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 640.252
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 134.52959
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -59.21263
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4201375256659373126, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5f7aaef69c68e34ba6cce140732809d, type: 3}
 --- !u!1 &1836909951
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +315,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 506606772, guid: a707f23fd88257c4c912b78a81b8db7b, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: b1a0ef7a00c2a9040b139c1e52c57dfc, type: 3}
     - target: {fileID: 8510256342377927157, guid: a707f23fd88257c4c912b78a81b8db7b, type: 3}
       propertyPath: m_Name
       value: LeaderboardScreen

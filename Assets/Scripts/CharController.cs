@@ -64,6 +64,8 @@ public class CharController : MonoBehaviour
         }
 
         animator.SetFloat("speed", speed);
+        animator.SetFloat("running", (running) ? 2 : 1);
+        animator.SetBool("right", (horizMove > 0));
 
         if (player.Health <= 0) {
             player.CurrentState = Player.player_states.died;
@@ -74,14 +76,16 @@ public class CharController : MonoBehaviour
             SceneManager.LoadScene(5); //survived screen
 
         if (touchingDoor != null) {
-            if (Input.GetKeyDown("E")) {
+            if (Input.GetKeyDown(KeyCode.E) && player.KeyState == Player.player_states.hasKey) {
                 openDoor(touchingDoor);
             }
         }
     }
 
     private void openDoor(GameObject door) {
-
+        Animator anim = door.GetComponentInParent<Animator>();
+        anim.SetTrigger("open");
+        player.KeyState = Player.player_states.noKey;
     }
 
     private bool isMoving() {
@@ -104,18 +108,17 @@ public class CharController : MonoBehaviour
                 player.KeyState = Player.player_states.hasKey; //change player state to have key
                 col.gameObject.SetActive(false); //deactivates the key so it can only be picked up once
                 break;
-            case "Door":
-                touchingDoor = col.gameObject;
-                break;
         }
     }
+    
+    public void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.tag == "Door")
+            touchingDoor = col.gameObject;
+    }
 
-    public void OnCollisionExit2D(Collision2D col) {
-        switch (col.gameObject.tag) {
-            case "Door":
-                touchingDoor = null;
-                break;
-        }
+    public void OnTriggerExit2D(Collider2D col) {
+        if (col.gameObject.tag == "Door")
+            touchingDoor = null;
     }
 
 }

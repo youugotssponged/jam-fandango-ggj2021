@@ -5,7 +5,7 @@ public class Timer : MonoBehaviour
     public Text timerText;
     private float startTime;
     private float stopTime;
-    private float timerTime;
+    public float timerTime;
     public int mins;
     public int secs;
     private bool isRunning;

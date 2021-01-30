@@ -17,7 +17,6 @@ public class PauseMenuController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
         {
-            Debug.Log("SPACE PRESSED");
             if(isPaused){
                 Resume();
             } else {

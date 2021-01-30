@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharController : MonoBehaviour
 {
@@ -66,7 +67,11 @@ public class CharController : MonoBehaviour
 
         if (player.Health <= 0) {
             player.CurrentState = Player.player_states.died;
+            SceneManager.LoadScene(6); //death screen
         }
+
+        if (player.CurrentState == Player.player_states.survived)
+            SceneManager.LoadScene(5); //survived screen
 
         if (touchingDoor != null) {
             if (Input.GetKeyDown("E")) {

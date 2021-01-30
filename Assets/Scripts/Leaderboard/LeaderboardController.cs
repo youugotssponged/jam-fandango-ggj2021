@@ -34,9 +34,9 @@ public class LeaderboardController
 
     ///<summary>Checks if the given player has beaten the slowest time in the leaderboard and adds them to it if they have</summary>
     public void addEntry(Player p) {
-        if (entries.Count == 10) { //if the list is full then remove the last entry
+        if (entries.Count == 5) { //if the list is full then remove the last entry
             if (hasBeatenTime(p.time)) {//if the user has been quick enough to get on the leaderboard, remove the last entry and add them to it
-                entries.RemoveAt(9);
+                entries.RemoveAt(4);
                 entries.Add(new Entry(p.playerInitials, p.time));
             }
         } else {
@@ -47,7 +47,7 @@ public class LeaderboardController
 
     ///<summary>Returns true if the given time is quicker than the slowest in the leaderboard</summary>
     private bool hasBeatenTime(double time) {
-        return (time < entries[9].time);
+        return (time < entries[4].time);
     }
 
     ///<summary>Sorts the entries in the list from quickest to slowest</summary>

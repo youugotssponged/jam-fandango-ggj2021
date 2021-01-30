@@ -5,22 +5,23 @@ using UnityEngine;
 public class CharController : MonoBehaviour
 {
     Player player;
+    GameObject touchingDoor;
     private Animator animator;
     private int idleState = Animator.StringToHash("Player_idle");
     public float baseSpeed = 10f;
     public float maxStamina;
-    private float stamina;
+    public float stamina {get; set;}
     private bool canRun = true;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        touchingDoor = null;
         player = new Player();
         stamina = maxStamina;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        LeaderboardController lbc = new LeaderboardController();
     }
 
     // Update is called once per frame
@@ -66,6 +67,16 @@ public class CharController : MonoBehaviour
         if (player.Health <= 0) {
             player.CurrentState = Player.player_states.died;
         }
+
+        if (touchingDoor != null) {
+            if (Input.GetKeyDown("E")) {
+                openDoor(touchingDoor);
+            }
+        }
+    }
+
+    private void openDoor(GameObject door) {
+
     }
 
     private bool isMoving() {
@@ -78,15 +89,26 @@ public class CharController : MonoBehaviour
         canRun = true;
     }
     
-    public void OnCollisionEnter2D(Collision2D other) {
-        switch (other.gameObject.tag) {
+    public void OnCollisionEnter2D(Collision2D col) {
+        switch (col.gameObject.tag) {
             case "Health":
                 player.Health = player.Health + ((player.Health <= 75) ? 25 : (100 - player.Health)); //adds 25 health to player but doesn't go over 100
+                col.gameObject.SetActive(false); //deactivates the health pickup so that it can't be used more than once
                 break;
             case "Key":
                 player.KeyState = Player.player_states.hasKey; //change player state to have key
+                col.gameObject.SetActive(false); //deactivates the key so it can only be picked up once
                 break;
             case "Door":
+                touchingDoor = col.gameObject;
+                break;
+        }
+    }
+
+    public void OnCollisionExit2D(Collision2D col) {
+        switch (col.gameObject.tag) {
+            case "Door":
+                touchingDoor = null;
                 break;
         }
     }

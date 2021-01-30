@@ -5,7 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Levels/SplashScreen.unity
+    guid: da94a2d38d25e1d4db40907a260f03bb
+  - enabled: 1
+    path: Assets/Scenes/Levels/MainMenu.unity
+    guid: 5f41d2843885b504aa4026933d81595d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Leaderboard.unity
+    guid: 6da8321f36357fd43aa632b64a015dfd
+  - enabled: 1
+    path: Assets/Scenes/Levels/Instructions.unity
+    guid: 3bb4b4891dff58e4f8a510cdaab4f478
+  - enabled: 1
+    path: Assets/Scenes/Levels/Game.unity
+    guid: 82843f79fa04cbc468f4d5551e571756
+  - enabled: 1
+    path: Assets/Scenes/Levels/LiveScreen.unity
+    guid: e6f546bc5cc234f44879fb54b71b8b51
+  - enabled: 1
+    path: Assets/Scenes/Levels/DeathScreen.unity
+    guid: 989735709b969204a82046018e7fa413
   m_configObjects: {}

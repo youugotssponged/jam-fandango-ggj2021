@@ -1,7 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+[RequireComponent(typeof(AudioSource))]
 public class MainMenuController : MonoBehaviour
 {
+    public AudioClip clip;
+    public AudioSource src;
+
+    // Needs to play theme, and handle button sounds?
+
+    private void Start(){
+
+    }
     public void LoadInstructions(){
         SceneManager.LoadScene(3);
     }

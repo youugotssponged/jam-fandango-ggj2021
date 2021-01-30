@@ -3,21 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EntryController : MonoBehaviour
+public class EntryController
 {
     Player player;
-    public Text[] initials = new Text[3];
-    LeaderboardController lbc;
-    // Start is called before the first frame update
-    void Start()
-    {
-        lbc = new LeaderboardController();
-    }
+    private Text[] initials = new Text[3];
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public EntryController(Text[] t) {
+        initials = t;
     }
 
     public void upButtonPressed(int i) {
@@ -40,14 +32,11 @@ public class EntryController : MonoBehaviour
         initials[i].text = (char)currentLetter + "";
     }
 
-    public void submitButtonPressed() {
+    public string getInitials() {
         string ins = "";
         foreach (Text t in initials)
             ins += t.text;
-        Debug.Log(ins);
-        // player.playerInitials = ins; //add player hook up here when J is done with game manager
-        // lbc.addEntry(player);
-        // lbc.saveEntries();
+        return ins;
     }
 
 }

@@ -4,6 +4,8 @@ public class AI
     {
         idle = 0,
         patrolling,
+        hunting,
+        searching,
         chasing,
         attacking,
     }

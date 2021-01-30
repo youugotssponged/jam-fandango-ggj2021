@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
+    Player player;
     private Animator animator;
-    private int idleState;
-    private int walkState;
-    private int runState;
+    private int idleState = Animator.StringToHash("Player_idle");
     public float baseSpeed = 10f;
     public float maxStamina;
     private float stamina;
@@ -17,12 +16,11 @@ public class CharController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = new Player();
         stamina = maxStamina;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        idleState = Animator.StringToHash("Idle");
-        walkState = Animator.StringToHash("Walk");
-        runState = Animator.StringToHash("Run");
+        LeaderboardController lbc = new LeaderboardController();
     }
 
     // Update is called once per frame
@@ -33,6 +31,7 @@ public class CharController : MonoBehaviour
 
         bool running = (canRun && isMoving()) ? Input.GetKey("left shift") : false;
         float speed = (running) ? baseSpeed*1.5f : baseSpeed;
+        speed = (isMoving()) ? speed : 0;
 
         if (running) {
             if (stamina <= 0) {
@@ -41,23 +40,31 @@ public class CharController : MonoBehaviour
                 stamina--;
             }
         } else {
-            if (stamina < maxStamina)
-                stamina += 0.25f;
+            if (stamina < maxStamina) {
+                if (isMoving()) {
+                    stamina += 0.25f;
+                } else {
+                    stamina += 0.5f;
+                }
+            }
         }
 
         Vector2 moveVector = new Vector2(horizMove * speed, vertMove * speed);
         rb.velocity = moveVector;
         if (isMoving()) {
             if (running) {
-                animator.SetTrigger(runState);
-                //set player state to running
+                player.CurrentState = Player.player_states.running; //set player state to running                
             } else {
-                animator.SetTrigger(walkState);
-                //set player state to walking
+                player.CurrentState = Player.player_states.walking; //set player state to walking
             }
         } else {
-            animator.SetTrigger(idleState);
-            //set player state to idle
+            player.CurrentState = Player.player_states.idle; //set player state to idle
+        }
+
+        animator.SetFloat("speed", speed);
+
+        if (player.Health <= 0) {
+            player.CurrentState = Player.player_states.died;
         }
     }
 
@@ -72,9 +79,12 @@ public class CharController : MonoBehaviour
     }
     
     public void OnCollisionEnter2D(Collision2D other) {
-        switch (other.gameObject.name) {
+        switch (other.gameObject.tag) {
+            case "Health":
+                player.Health = player.Health + ((player.Health <= 75) ? 25 : (100 - player.Health)); //adds 25 health to player but doesn't go over 100
+                break;
             case "Key":
-                //change player state to have key
+                player.KeyState = Player.player_states.hasKey; //change player state to have key
                 break;
             case "Door":
                 break;

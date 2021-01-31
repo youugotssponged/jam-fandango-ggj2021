@@ -306,6 +306,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 512927717, guid: f68c1210638e8f34894105bb6c1cdbe0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -187
+      objectReference: {fileID: 0}
+    - target: {fileID: 512927717, guid: f68c1210638e8f34894105bb6c1cdbe0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 3351296439229940817, guid: f68c1210638e8f34894105bb6c1cdbe0, type: 3}
       propertyPath: m_Name
       value: MainMenuPrefab

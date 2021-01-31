@@ -31,6 +31,10 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+    public void LoadCreditsScene(){
+        SceneManager.LoadScene(7);
+    }
+
     public void QuitToDesktop(){   
         Application.Quit();
     }

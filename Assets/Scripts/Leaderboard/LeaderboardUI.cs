@@ -59,7 +59,7 @@ public class LeaderboardUI : MonoBehaviour
             time += "0";
         time += minutes + ":";
 
-        float secs = seconds - (hours * 3600) - (minutes * 60);
+        float secs = Mathf.Floor(seconds - (hours * 3600) - (minutes * 60));
         if (secs < 10)
             time += "0";
         time += secs;

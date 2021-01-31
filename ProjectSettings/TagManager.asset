@@ -4,18 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Key
-  - Door
+  - Final door
   - Health
+  - Door
+  - Key
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Obstacle
   - 
   - 
   - 

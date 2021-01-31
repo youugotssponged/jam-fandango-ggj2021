@@ -21,7 +21,7 @@ public class CreditsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textArea.transform.Translate(0, 70.0f * Time.deltaTime, 0);
+        textArea.transform.Translate(0, 50.0f * Time.deltaTime, 0);
     }
 
     public void PlayClickOnHover() 

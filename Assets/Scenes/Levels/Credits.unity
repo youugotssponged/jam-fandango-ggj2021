@@ -765,7 +765,23 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "CREDITS\r\n\r\n\u2018Twas the night before Game Jam and all through the
+    net\r\nNot a Jammer was stirring, no game dev-- not yet.\r\nLaptops were plugged
+    in and charging with care\r\nIn hope that a good theme would soon be on there.\r\n\r\nJam
+    Fandango were nestled all snug in their beds\r\nWhile visions of Unity danced
+    in their heads.\r\nSoon the eve fell when the theme was announced\r\nAnd our
+    friends that Fandango? This is how they pounced:\r\n\r\nJordan McCann - Project
+    Manager, UI/UX and General Systems Architect. Created a fort of Monster cans
+    and is currently refusing to come out.\r\n\r\nNiall Davis - Core Gameplay & Core
+    Systems Architect. Single handedly kept the tea industry alive throughout the
+    Game Jam.\r\n\r\nJordan Nash - Asset Design, Level Design, Design Systems Architect,
+    Concepts. Once fought the Hench Goose and lived to tell the tale.\r\n\r\nAnthony
+    Wilcock - A.I System. Probably secretly owns at least one ABBA CD.\r\n\r\nBeth
+    Robertson - The Boss, Artist, UI Design, Asset Design, Concepts. Vows to one
+    day recite the entire Bee Movie script from memory alone.\r\n\r\nDaniel Moore
+    - Sound Engineer - Themes & SFX. Gold-standard Fortnite dancer.\r\n\r\nWilliam
+    Bragg - Sound Engineer - Themes & SFX. Would compose music in Comic Sans if it
+    was at all possible.\r\n"
 --- !u!222 &1802238952
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -790,8 +806,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.4093, y: -101.3291}
-  m_SizeDelta: {x: 489.6002, y: 381.6426}
+  m_AnchoredPosition: {x: 0.000019073, y: -1830}
+  m_SizeDelta: {x: 558.4765, y: 2544.1875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1849184484
 GameObject:

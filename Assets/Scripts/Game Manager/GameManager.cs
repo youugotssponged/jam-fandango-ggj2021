@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject TimerUI_Canvas;
     private Timer timer;
-    public double time; 
+    public static double time; 
     private static GameManager instance = null;
     public static GameManager Instance 
     {
@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     }
     public void PrintTime(){
         Debug.Log("Time is: " + time);
+    }
+
+    public double getTime() {
+        return time;
     }
 
 }

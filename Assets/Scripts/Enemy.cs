@@ -7,13 +7,17 @@ public class Enemy : MonoBehaviour
 {
     public Transform playerTransform;
     public Transform patrolPoint;
+    public GameObject view;
+    public Material[] materials;
     public bool onHighAlert = false;
+    public float chaseSpeed = 6;
 
-    public float huntRadius;
+    public float huntRadius = 4;
 
     private float searchTime = 3f;
+    private MeshRenderer viewMeshRenderer;
 
-    private bool isAlive = true;
+    //private bool isAlive = true;
 
     private NavMeshAgent nav;
     private EnemyFieldOfView enemyFOV;
@@ -21,11 +25,13 @@ public class Enemy : MonoBehaviour
     public AI.ai_states ai;
 
     private void Start()
-    {
+    {   
         nav = GetComponent<NavMeshAgent>();
         enemyFOV = GetComponentInChildren<EnemyFieldOfView>();
         pp = FindObjectOfType<PatrolPoint>();
         nav.speed = 2f;
+        viewMeshRenderer = view.GetComponent<MeshRenderer>();
+        viewMeshRenderer.material = materials[0];
     }
 
     private void Update()
@@ -66,6 +72,7 @@ public class Enemy : MonoBehaviour
             onHighAlert = true;
             ai = AI.ai_states.chasing;
         }
+
     }
 
     void IdleState()
@@ -76,11 +83,12 @@ public class Enemy : MonoBehaviour
 
         if (onHighAlert)
         {
-            if (huntRadius >= 20f)
+            if (huntRadius >= 10f)
             {
+                viewMeshRenderer.material = materials[0];
                 onHighAlert = false;
                 nav.speed = 2f;
-                huntRadius = 5f;
+                huntRadius = 4f;
                 ai = AI.ai_states.idle;
             }
 
@@ -90,14 +98,14 @@ public class Enemy : MonoBehaviour
 
             if (nav.remainingDistance <= nav.stoppingDistance)
             {
-                huntRadius += 5f;
+                huntRadius += 2f;
             }
             ai = AI.ai_states.hunting;
         }
 
         if (!onHighAlert)
         {
-            huntRadius = 5f;
+            huntRadius = 4f;
             NavMesh.SamplePosition(patrolPoint.transform.position + randomPos, out hit, 20f, NavMesh.AllAreas);
             nav.SetDestination(hit.position);
             ai = AI.ai_states.patrolling;
@@ -115,10 +123,11 @@ public class Enemy : MonoBehaviour
 
     void HuntState()
     {
+        viewMeshRenderer.material = materials[1];
         if (nav.remainingDistance <= nav.stoppingDistance && !nav.pathPending)
         {
             searchTime = 2f;
-            huntRadius = 5f;
+            //huntRadius = 5f;
             ai = AI.ai_states.searching;
         }
     }
@@ -143,16 +152,17 @@ public class Enemy : MonoBehaviour
 
     void ChaseState()
     {
+        viewMeshRenderer.material = materials[2];
         nav.speed = 4f;
         nav.SetDestination(playerTransform.transform.position);
 
-        if (nav.remainingDistance <= 8f)
+        if (nav.remainingDistance <= 2f)
         {
             nav.speed = 0f;
         }
         else
         {
-            nav.speed = 3.5f;
+            nav.speed = chaseSpeed;
         }
 
         if (enemyFOV.visibleTargets.Count <= 0)

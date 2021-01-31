@@ -33,7 +33,6 @@ public class PlayerHUDController : MonoBehaviour
     {
         // Check vals - set bar widths
 
-
         // Check and update key image
         UpdateKeyImage();
     }

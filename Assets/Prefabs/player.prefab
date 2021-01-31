@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8877420010da1c14e8491223d47a28f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hud: {fileID: 0}
   playerSounds:
   - {fileID: 8300000, guid: d58b6ab095b751c4aa9b89b7d881d2a9, type: 3}
   - {fileID: 8300000, guid: 5cbed391f4f75af41bb849479b77a778, type: 3}

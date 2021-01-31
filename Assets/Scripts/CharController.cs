@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CharController : MonoBehaviour
 {
+    public PlayerHUDController hud;
     private AudioSource audioSource;
     private AudioSource walkingAudio;
     public AudioClip[] playerSounds; //0 should be door opening, 1 is health pickup, 2 is hurt noise, 3 is walking, 4 is running
@@ -51,6 +52,9 @@ public class CharController : MonoBehaviour
         walkingAudio.clip = (running) ? playerSounds[4] : playerSounds[3];
         if (!walkingAudio.isPlaying)
             walkingAudio.Play();
+
+        hud.HPBarImage.fillAmount = (player.Health * 5f) / 500;
+        hud.STBarImage.fillAmount = (stamina / 2) / 500;
 
         if (running) {
             if (stamina <= 0) {
@@ -105,6 +109,7 @@ public class CharController : MonoBehaviour
         anim.SetTrigger("open");
         playSound("door");
         player.KeyState = Player.player_states.noKey;
+        hud.keyFound = false;
     }
 
     private bool isMoving() {
@@ -121,7 +126,6 @@ public class CharController : MonoBehaviour
         switch (col.gameObject.tag) {
             case "Health":
                 if (player.Health < 100) {
-                    Debug.Log(player.Health);
                     player.Health = player.Health + ((player.Health <= 75) ? 25 : (100 - player.Health)); //adds 25 health to player but doesn't go over 100
                     col.gameObject.SetActive(false); //deactivates the health pickup so that it can't be used more than once
                     playSound("health");
@@ -129,6 +133,7 @@ public class CharController : MonoBehaviour
                 break;
             case "Key":
                 player.KeyState = Player.player_states.hasKey; //change player state to have key
+                hud.keyFound = true;
                 col.gameObject.SetActive(false); //deactivates the key so it can only be picked up once
                 break;
         }

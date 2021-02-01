@@ -8,6 +8,8 @@
     The official Team Jam Fandango - Global Game Jam 2021 Repository.
 </p>
 
+Find the game here: [Perish By Dawn](https://globalgamejam.org/2021/games/perish-dawn-0)
+
 # The Jam Fandango Team
 ## Artists
 ### Design
